@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    username:root
+    password:password
+    url:jdbc:mysql://localhost:3306/mall?
+useUnicode=true&amp;characterEncoding=utf-8
+    driver-class-name: com.mysql.jdbc.Driver
+mybaits:
+  mapper-locations:
+classpath:com/winemall/mall/mapper/*.xml
+logging:
+  level:
+    com:
+      winemall:
+        mall:
+          mapper:debug

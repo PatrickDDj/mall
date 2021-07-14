@@ -9,18 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>vspace-pojo</artifactId>
+    <artifactId>caragory-api</artifactId>
+    <dependencies></dependencies>
 
-    <build>
-        <plugins>
-            <plugin> <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId> <!--如果是子项目不需要单独运行,只是被依赖的jar,那么
-就可以取消生成可执行jar包--> <configuration>
-                <skip>true</skip>
-            </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
+    <properties>
+        <maven.compiler.source>14</maven.compiler.source>
+        <maven.compiler.target>14</maven.compiler.target>
+    </properties>
 
 </project>
