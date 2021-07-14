@@ -6,14 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="vspace-pojo" />
+        <module name="caragory-api" />
+        <module name="catagory-mapper" />
+        <module name="mall-pojo" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="caragory-api" options="-parameters" />
+      <module name="catagory-mapper" options="-parameters" />
       <module name="mall" options="-parameters" />
-      <module name="vspace-pojo" options="-parameters" />
+      <module name="mall-pojo" options="-parameters" />
     </option>
   </component>
 </project>
