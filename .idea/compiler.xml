@@ -6,16 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="caragory-api" />
-        <module name="catagory-mapper" />
+        <module name="category-mapper" />
+        <module name="category-service" />
         <module name="mall-pojo" />
+        <module name="category-api" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="caragory-api" options="-parameters" />
-      <module name="catagory-mapper" options="-parameters" />
+      <module name="category-api" options="-parameters" />
+      <module name="category-mapper" options="-parameters" />
+      <module name="category-service" options="-parameters" />
       <module name="mall" options="-parameters" />
       <module name="mall-pojo" options="-parameters" />
     </option>

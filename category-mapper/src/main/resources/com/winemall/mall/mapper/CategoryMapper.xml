@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.winemall.mall.mapper.CategoryMapper">
+    <select id="findGoodRankBySell" parameterType="java.lang.String"
+    resultMap="getGoodRank">
+        SELECT
+        goods.GOODS_ID,
+        goods.GOODS_TITLE,
+        goods.PRICE,
+        goods.DISCOUNT,
+        goods.SIZE,
+        goods.ALCOHOL,
+        goods.RATING,
+        goods.DESCRIPTION,
+        goods.AMMOUNT,
+        goods.IMAGE_URL,
+        Sum(goods_order.AMMOUNT) AS total
+        FROM
+        goods_order
+        INNER JOIN orders ON goods_order.ORDER_ID = orders.ORDER_ID
+        INNER JOIN goods ON goods_order.GOODS_ID = goods.GOODS_ID
+        WHERE
+        orders.ORDER_DATE >= #{timeString} AND
+        orders.`STATUS` >= 1
+        GROUP BY
+        goods.GOODS_ID,
+        goods.GOODS_TITLE,
+        goods.PRICE,
+        goods.DISCOUNT,
+        goods.SIZE,
+        goods.ALCOHOL,
+        goods.RATING,
+        goods.DESCRIPTION,
+        goods.AMMOUNT,
+        goods.IMAGE_URL
+        ORDER BY
+        goods_order.GOODS_ID ASC;
+    </select>
+    <resultMap id="getGoodRank" type="com.winemall.mall.entity.GoodsSold">
+        <id property="goods_id" column="GOODS_ID"/>
+        <result property="goods_title" column="GOODS_TITLE"/>
+        <result property="price" column="PRICE"/>
+        <result property="discount" column="DISCOUNT"/>
+        <result property="size" column="SIZE"/>
+        <result property="alcohol" column="ALCOHOL"/>
+        <result property="rating" column="RATING"/>
+        <result property="description" column="DESCRIPTION"/>
+        <result property="ammount" column="AMMOUNT"/>
+        <result property="imageUrl" column="IMAGE_URL"/>
+        <result property="total" column="total"/>
+    </resultMap>
+    <select id="findAllGoods" resultMap="getGoods">
+        SELECT
+            goods.GOODS_ID,
+            goods.GOODS_TITLE,
+            goods.PRICE,
+            goods.DISCOUNT,
+            goods.SIZE,
+            goods.ALCOHOL,
+            goods.RATING,
+            goods.DESCRIPTION,
+            goods.AMMOUNT,
+            goods.IMAGE_URL
+        FROM
+            goods
+        ORDER BY
+            goods.GOODS_ID ASC
+
+    </select>
+    <resultMap id="getGoods" type="com.winemall.mall.entity.GoodsSold">
+        <id property="goods_id" column="GOODS_ID"/>
+        <result property="goods_title" column="GOODS_TITLE"/>
+        <result property="price" column="PRICE"/>
+        <result property="discount" column="DISCOUNT"/>
+        <result property="size" column="SIZE"/>
+        <result property="alcohol" column="ALCOHOL"/>
+        <result property="rating" column="RATING"/>
+        <result property="description" column="DESCRIPTION"/>
+        <result property="ammount" column="AMMOUNT"/>
+        <result property="imageUrl" column="IMAGE_URL"/>
+    </resultMap>
+</mapper>
