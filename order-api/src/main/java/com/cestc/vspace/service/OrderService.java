@@ -5,12 +5,6 @@ import com.winemall.mall.pojo.TbTrade;
 
 import java.util.List;
 
-/**
- * @Author: Stephen
- * @Edition: V1.0
- * @CreateDate: 2021/5/4 11:38
- * @Description: 订单业务接口
- */
 public interface OrderService {
     //创建方法根据用户手机号码查询用户订单信息
     List<TbOrder> findOrdersByPhone(String phone);

@@ -1,15 +1,8 @@
 package com.winemall.mall.service;
 
 import com.winemall.mall.pojo.TbCart;
-
 import java.util.List;
 
-/**
- * @Author: Stephen
- * @Edition: V1.0
- * @CreateDate: 2021/5/24 9:46
- * @Description: 购物车服务接口
- */
 public interface CartService {
     //添加购物车记录
     boolean insertCart(TbCart cart);

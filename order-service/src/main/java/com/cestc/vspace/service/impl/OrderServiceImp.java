@@ -11,12 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-/**
- * @Author: Stephen
- * @Edition: V1.0
- * @CreateDate: 2021/5/4 11:40
- * @Description:
- */
 @Service
 public class OrderServiceImp implements OrderService {
     //自动装配一个OrderMapper
