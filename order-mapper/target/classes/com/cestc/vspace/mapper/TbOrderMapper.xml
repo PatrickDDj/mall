@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cestc.vspace.mapper.TbOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.cestc.vspace.pojo.TbOrder" >
+    <id column="ORDER_ID" property="orderId" jdbcType="BIGINT" />
+    <result column="OUT_TRADE_NO" property="outTradeNo" jdbcType="BIGINT" />
+    <result column="PHONE" property="phone" jdbcType="CHAR" />
+    <result column="ORDER_DATE" property="orderDate" jdbcType="TIMESTAMP" />
+    <result column="GOODS_ID" property="goodsId" jdbcType="BIGINT" />
+    <result column="AMMOUNT" property="ammount" jdbcType="INTEGER" />
+    <result column="SUM_PRICE" property="sumPrice" jdbcType="DOUBLE" />
+    <result column="SHIPMENT_STATUS" property="shipmentStatus" jdbcType="INTEGER" />
+    <result column="RECEIVE_ADDR_ID" property="receiveAddrId" jdbcType="BIGINT" />
+    <result column="DELETE_TAG" property="deleteTag" jdbcType="BIT" />
+    <result column="PAYMENT_STATUS" property="paymentStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ORDER_ID, OUT_TRADE_NO, PHONE, ORDER_DATE, GOODS_ID, AMMOUNT, SUM_PRICE, SHIPMENT_STATUS, 
+    RECEIVE_ADDR_ID, DELETE_TAG, PAYMENT_STATUS
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cestc.vspace.pojo.TbOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from TB_ORDER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from TB_ORDER
+    where ORDER_ID = #{orderId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from TB_ORDER
+    where ORDER_ID = #{orderId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cestc.vspace.pojo.TbOrderExample" >
+    delete from TB_ORDER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cestc.vspace.pojo.TbOrder" >
+    insert into TB_ORDER (ORDER_ID, OUT_TRADE_NO, PHONE, 
+      ORDER_DATE, GOODS_ID, AMMOUNT, 
+      SUM_PRICE, SHIPMENT_STATUS, RECEIVE_ADDR_ID, 
+      DELETE_TAG, PAYMENT_STATUS)
+    values (#{orderId,jdbcType=BIGINT}, #{outTradeNo,jdbcType=BIGINT}, #{phone,jdbcType=CHAR}, 
+      #{orderDate,jdbcType=TIMESTAMP}, #{goodsId,jdbcType=BIGINT}, #{ammount,jdbcType=INTEGER}, 
+      #{sumPrice,jdbcType=DOUBLE}, #{shipmentStatus,jdbcType=INTEGER}, #{receiveAddrId,jdbcType=BIGINT}, 
+      #{deleteTag,jdbcType=BIT}, #{paymentStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cestc.vspace.pojo.TbOrder" >
+    insert into TB_ORDER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="outTradeNo != null" >
+        OUT_TRADE_NO,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="orderDate != null" >
+        ORDER_DATE,
+      </if>
+      <if test="goodsId != null" >
+        GOODS_ID,
+      </if>
+      <if test="ammount != null" >
+        AMMOUNT,
+      </if>
+      <if test="sumPrice != null" >
+        SUM_PRICE,
+      </if>
+      <if test="shipmentStatus != null" >
+        SHIPMENT_STATUS,
+      </if>
+      <if test="receiveAddrId != null" >
+        RECEIVE_ADDR_ID,
+      </if>
+      <if test="deleteTag != null" >
+        DELETE_TAG,
+      </if>
+      <if test="paymentStatus != null" >
+        PAYMENT_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="outTradeNo != null" >
+        #{outTradeNo,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="orderDate != null" >
+        #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="ammount != null" >
+        #{ammount,jdbcType=INTEGER},
+      </if>
+      <if test="sumPrice != null" >
+        #{sumPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="shipmentStatus != null" >
+        #{shipmentStatus,jdbcType=INTEGER},
+      </if>
+      <if test="receiveAddrId != null" >
+        #{receiveAddrId,jdbcType=BIGINT},
+      </if>
+      <if test="deleteTag != null" >
+        #{deleteTag,jdbcType=BIT},
+      </if>
+      <if test="paymentStatus != null" >
+        #{paymentStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cestc.vspace.pojo.TbOrderExample" resultType="java.lang.Integer" >
+    select count(*) from TB_ORDER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update TB_ORDER
+    <set >
+      <if test="record.orderId != null" >
+        ORDER_ID = #{record.orderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.outTradeNo != null" >
+        OUT_TRADE_NO = #{record.outTradeNo,jdbcType=BIGINT},
+      </if>
+      <if test="record.phone != null" >
+        PHONE = #{record.phone,jdbcType=CHAR},
+      </if>
+      <if test="record.orderDate != null" >
+        ORDER_DATE = #{record.orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.goodsId != null" >
+        GOODS_ID = #{record.goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="record.ammount != null" >
+        AMMOUNT = #{record.ammount,jdbcType=INTEGER},
+      </if>
+      <if test="record.sumPrice != null" >
+        SUM_PRICE = #{record.sumPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.shipmentStatus != null" >
+        SHIPMENT_STATUS = #{record.shipmentStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.receiveAddrId != null" >
+        RECEIVE_ADDR_ID = #{record.receiveAddrId,jdbcType=BIGINT},
+      </if>
+      <if test="record.deleteTag != null" >
+        DELETE_TAG = #{record.deleteTag,jdbcType=BIT},
+      </if>
+      <if test="record.paymentStatus != null" >
+        PAYMENT_STATUS = #{record.paymentStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update TB_ORDER
+    set ORDER_ID = #{record.orderId,jdbcType=BIGINT},
+      OUT_TRADE_NO = #{record.outTradeNo,jdbcType=BIGINT},
+      PHONE = #{record.phone,jdbcType=CHAR},
+      ORDER_DATE = #{record.orderDate,jdbcType=TIMESTAMP},
+      GOODS_ID = #{record.goodsId,jdbcType=BIGINT},
+      AMMOUNT = #{record.ammount,jdbcType=INTEGER},
+      SUM_PRICE = #{record.sumPrice,jdbcType=DOUBLE},
+      SHIPMENT_STATUS = #{record.shipmentStatus,jdbcType=INTEGER},
+      RECEIVE_ADDR_ID = #{record.receiveAddrId,jdbcType=BIGINT},
+      DELETE_TAG = #{record.deleteTag,jdbcType=BIT},
+      PAYMENT_STATUS = #{record.paymentStatus,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cestc.vspace.pojo.TbOrder" >
+    update TB_ORDER
+    <set >
+      <if test="outTradeNo != null" >
+        OUT_TRADE_NO = #{outTradeNo,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="orderDate != null" >
+        ORDER_DATE = #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsId != null" >
+        GOODS_ID = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="ammount != null" >
+        AMMOUNT = #{ammount,jdbcType=INTEGER},
+      </if>
+      <if test="sumPrice != null" >
+        SUM_PRICE = #{sumPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="shipmentStatus != null" >
+        SHIPMENT_STATUS = #{shipmentStatus,jdbcType=INTEGER},
+      </if>
+      <if test="receiveAddrId != null" >
+        RECEIVE_ADDR_ID = #{receiveAddrId,jdbcType=BIGINT},
+      </if>
+      <if test="deleteTag != null" >
+        DELETE_TAG = #{deleteTag,jdbcType=BIT},
+      </if>
+      <if test="paymentStatus != null" >
+        PAYMENT_STATUS = #{paymentStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ORDER_ID = #{orderId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cestc.vspace.pojo.TbOrder" >
+    update TB_ORDER
+    set OUT_TRADE_NO = #{outTradeNo,jdbcType=BIGINT},
+      PHONE = #{phone,jdbcType=CHAR},
+      ORDER_DATE = #{orderDate,jdbcType=TIMESTAMP},
+      GOODS_ID = #{goodsId,jdbcType=BIGINT},
+      AMMOUNT = #{ammount,jdbcType=INTEGER},
+      SUM_PRICE = #{sumPrice,jdbcType=DOUBLE},
+      SHIPMENT_STATUS = #{shipmentStatus,jdbcType=INTEGER},
+      RECEIVE_ADDR_ID = #{receiveAddrId,jdbcType=BIGINT},
+      DELETE_TAG = #{deleteTag,jdbcType=BIT},
+      PAYMENT_STATUS = #{paymentStatus,jdbcType=INTEGER}
+    where ORDER_ID = #{orderId,jdbcType=BIGINT}
+  </update>
+</mapper>
