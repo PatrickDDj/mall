@@ -23,7 +23,7 @@ dubbo:
     port: 20881  #通过dubbo协议远程调用该服务时候使用的端口号,20880端口已经在user-service模块中被占用,此处更换端口
   #制定扫描的基础包
   scan:
-    base-packages: com.cestc.vspace.service.impl
+    base-packages: com.winemall.mall.service.impl
 #配置springboot热部署
 spring:
   devtools:

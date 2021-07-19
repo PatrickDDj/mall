@@ -1,0 +1,3 @@
+com\winemall\mall\CategoryMapperApplication.class
+com\winemall\mall\entity\GoodsSold.class
+com\winemall\mall\mapper\CategoryMapper.class

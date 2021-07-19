@@ -5,10 +5,26 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/picture-service/pom.xml" />
+        <option value="$PROJECT_DIR$/picture-api/pom.xml" />
+        <option value="$PROJECT_DIR$/order-service/pom.xml" />
+        <option value="$PROJECT_DIR$/order-mapper/pom.xml" />
+        <option value="$PROJECT_DIR$/order-api/pom.xml" />
+        <option value="$PROJECT_DIR$/cart-api/pom.xml" />
+        <option value="$PROJECT_DIR$/cart-mapper/pom.xml" />
+        <option value="$PROJECT_DIR$/cart-service/pom.xml" />
+        <option value="$PROJECT_DIR$/search-api/pom.xml" />
+        <option value="$PROJECT_DIR$/search-service/pom.xml" />
+        <option value="$PROJECT_DIR$/user-api/pom.xml" />
+        <option value="$PROJECT_DIR$/user-service/pom.xml" />
+        <option value="$PROJECT_DIR$/user-mapper/pom.xml" />
+        <option value="$PROJECT_DIR$/goods-api/pom.xml" />
+        <option value="$PROJECT_DIR$/goods-mapper/pom.xml" />
+        <option value="$PROJECT_DIR$/goods-service/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_14" project-jdk-name="14" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_13" default="false" project-jdk-name="13 (1)" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

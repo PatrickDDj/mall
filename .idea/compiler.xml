@@ -6,22 +6,54 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="category-mapper" />
+        <module name="search-api" />
+        <module name="cart-service" />
         <module name="category-service" />
+        <module name="cart-mapper" />
         <module name="mall-web" />
+        <module name="user-service" />
+        <module name="order-api" />
         <module name="mall-pojo" />
+        <module name="user-mapper" />
+        <module name="goods-api" />
+        <module name="category-mapper" />
+        <module name="goods-service" />
+        <module name="user-api" />
+        <module name="picture-service" />
+        <module name="search-service" />
+        <module name="picture-api" />
+        <module name="order-mapper" />
+        <module name="goods-mapper" />
+        <module name="order-service" />
+        <module name="cart-api" />
         <module name="category-api" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="cart-api" options="-parameters" />
+      <module name="cart-mapper" options="-parameters" />
+      <module name="cart-service" options="-parameters" />
       <module name="category-api" options="-parameters" />
       <module name="category-mapper" options="-parameters" />
       <module name="category-service" options="-parameters" />
+      <module name="goods-api" options="-parameters" />
+      <module name="goods-mapper" options="-parameters" />
+      <module name="goods-service" options="-parameters" />
       <module name="mall" options="-parameters" />
       <module name="mall-pojo" options="-parameters" />
       <module name="mall-web" options="-parameters" />
+      <module name="order-api" options="-parameters" />
+      <module name="order-mapper" options="-parameters" />
+      <module name="order-service" options="-parameters" />
+      <module name="picture-api" options="-parameters" />
+      <module name="picture-service" options="-parameters" />
+      <module name="search-api" options="-parameters" />
+      <module name="search-service" options="-parameters" />
+      <module name="user-api" options="-parameters" />
+      <module name="user-mapper" options="-parameters" />
+      <module name="user-service" options="-parameters" />
     </option>
   </component>
 </project>
