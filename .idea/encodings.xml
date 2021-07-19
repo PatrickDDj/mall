@@ -4,5 +4,6 @@
     <file url="file://$PROJECT_DIR$/category-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/category-mapper/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/category-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mall-web/src/main/java" charset="UTF-8" />
   </component>
 </project>
