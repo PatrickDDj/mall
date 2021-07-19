@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.winemall.mall.mapper.AddressMapper">
+    <select id="getAllAddress" parameterType="java.lang.String"
+            resultMap="BaseMap">
+        SELECT address.PROVINCE,
+               address.CITY,
+               address.SECTION,
+               address.DETAIL,
+               address.RECEIVE_NAME,
+               address.PHONE,
+               address.IS_DEFAULT
+        FROM address
+        WHERE address.PHONE = #{phone};
+    </select>
+    <resultMap id="BaseMap" type="com.winemall.mall.entity.Address">
+        <id property="addr_id" column="ADDR_ID"/>
+        <result property="name" column="RECEIVE_NAME"/>
+        <result property="province" column="PROVINCE"/>
+        <result property="city" column="CITY"/>
+        <result property="section" column="SECTION"/>
+        <result property="address" column="DETAIL"/>
+        <result property="phone" column="PHONE"/>
+        <result property="is_default" column="IS_DEFAULT"/>
+    </resultMap>
+    <insert id="insertAddress" parameterType="com.winemall.mall.entity.Address" useGeneratedKeys="true" keyProperty="addr_id">
+        INSERT INTO `mall`.`address`
+        (`PHONE`, `PROVINCE`, `CITY`, `SECTION`, `DETAIL`, `RECEIVE_NAME`, `RECEIVE_PHONE`, `IS_DEFAULT`)
+        VALUES (#{phone}, #{province}, #{city}
+                   , #{section}, #{address}, #{name},
+                #{phone}, #{is_default});
+    </insert>
+    <delete id="delAddress">
+        DELETE
+        FROM address
+        WHERE ADDR_ID = #{addr_id};
+    </delete>
+    <update id="updateAddress" parameterType="com.winemall.mall.entity.Address">
+        UPDATE `mall`.`address`
+        SET `PHONE`=#{phone},
+            `PROVINCE`=#{province},
+            `CITY`=#{city},
+            `SECTION`=#{section},
+            `DETAIL`= #{address},
+            `RECEIVE_NAME`=#{name},
+            `RECEIVE_PHONE`=#{phone},
+            `IS_DEFAULT`=#{is_default}
+        WHERE (`ADDR_ID` = #{addr_id,jdbcType=BIGINT});
+    </update>
+    <update id="setDefault">
+        UPDATE `mall`.`address`
+        SET `IS_DEFAULT`=1
+        WHERE (`ADDR_ID` = #{addr_id,jdbcType=BIGINT});
+    </update>
+    <update id="clearDefault">
+        UPDATE `mall`.`address`
+        SET `IS_DEFAULT`=0
+        WHERE (`PHONE` = #{phone});
+    </update>
+    <select id="getDefault" resultMap="BaseMap">
+        SELECT
+            address.ADDR_ID
+        FROM
+            address
+        WHERE
+            address.PHONE =#{phone} AND
+            address.IS_DEFAULT = 1;
+    </select>
+</mapper>
