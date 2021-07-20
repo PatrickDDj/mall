@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/cache-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cache-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cart-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cart-mapper/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cart-mapper/src/main/resources" charset="UTF-8" />
@@ -18,8 +20,13 @@
     <file url="file://$PROJECT_DIR$/order-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/order-mapper/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/order-mapper/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/order-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/order-service/src/main/resources" charset="UTF-8" />
+<<<<<<< HEAD
+    <file url="file://$PROJECT_DIR$/user-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/user-mapper/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/user-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/user-service/src/main/resources" charset="UTF-8" />
+=======
     <file url="file://$PROJECT_DIR$/picture-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/picture-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/picture-service/src/main/resources" charset="UTF-8" />
@@ -28,5 +35,6 @@
     <file url="file://$PROJECT_DIR$/user-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-mapper/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/src/main/java" charset="UTF-8" />
+>>>>>>> origin/master
   </component>
 </project>

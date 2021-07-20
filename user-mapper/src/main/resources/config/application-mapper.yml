@@ -1,15 +1,28 @@
 spring:
   datasource:
     username: root
+<<<<<<< HEAD
+    password: password
+    url: jdbc:mysql://localhost:3306/mall?useUnicode=true&amp&characterEncoding=utf-8&serverTimezone=CST
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  mapper-locations: classpath:com/winemall/mall/mapper/*.xml
+
+=======
     password: Aa123456_
     url: jdbc:mysql://192.168.2.39:3306/vspace?useUnicode=true&amp;characterEncoding=utf-8
     driver-class-name: com.mysql.jdbc.Driver
 mybatis:
   mapper-locations: classpath:com/winemall/mall/mapper/*.xml
+>>>>>>> origin/master
 logging:
   level:
     com:
       winemall:
         mall:
+<<<<<<< HEAD
+          mapper: debug
+=======
           mapper: debug
 
+>>>>>>> origin/master

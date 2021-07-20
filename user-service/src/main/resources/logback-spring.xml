@@ -173,10 +173,17 @@
 
     <root level="info">
         <appender-ref ref="CONSOLE" />
+<<<<<<< HEAD
+        <!--        <appender-ref ref="DEBUG_FILE" />-->
+        <appender-ref ref="INFO_FILE" />
+        <!--        <appender-ref ref="WARN_FILE" />-->
+        <!--        <appender-ref ref="ERROR_FILE" />-->
+=======
 <!--        <appender-ref ref="DEBUG_FILE" />-->
         <appender-ref ref="INFO_FILE" />
 <!--        <appender-ref ref="WARN_FILE" />-->
 <!--        <appender-ref ref="ERROR_FILE" />-->
+>>>>>>> origin/master
     </root>
 
     <!-- 4.2 生产环境:输出到文档

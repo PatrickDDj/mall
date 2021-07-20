@@ -1,8 +1,9 @@
 package com.winemall.mall.service.impl;
 
-import com.winemall.mall.mapper.TbCartMapper;
-import com.winemall.mall.pojo.TbCart;
-import com.winemall.mall.pojo.TbCartExample;
+import com.winemall.mall.mapper.CartMapper;
+import com.winemall.mall.pojo.Cart;
+import com.winemall.mall.pojo.CartExample;
+import com.winemall.mall.pojo.CartKey;
 import com.winemall.mall.service.CartService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,37 +14,31 @@ import java.util.List;
 public class CartServiceImp implements CartService {
     //自动装配一个CartMapper属性
     @Autowired
-    private TbCartMapper cartMapper;
+    private CartMapper cartMapper;
     @Override
-    public boolean insertCart(TbCart cart) {
+    public boolean insertCart(Cart cart) {
         return cartMapper.insert(cart) > 0;
     }
 
     @Override
-    public boolean deleteCart(long cartId) {
-        return cartMapper.deleteByPrimaryKey(cartId) > 0;
+    public boolean deleteCart(CartKey cartKey) {
+        return cartMapper.deleteByPrimaryKey(cartKey) > 0;
     }
 
     @Override
-    public boolean updateCart(TbCart cart) {
+    public boolean updateCart(Cart cart) {
         return cartMapper.updateByPrimaryKeySelective(cart) > 0;
     }
 
     @Override
-    public List<TbCart> findCartsByPhone(String phone) {
+    public List<Cart> findCartsByPhone(String phone) {
         //创建一个查询example对象
-        TbCartExample tbCartExample = new TbCartExample();
-        tbCartExample.createCriteria().andPhoneEqualTo(phone);
+        CartExample cartExample = new CartExample();
+        cartExample.createCriteria().andPhoneEqualTo(phone);
         //查询
-        List<TbCart> tbCarts = cartMapper.selectByExample(tbCartExample);
-        return tbCarts;
-    }
-
-    @Override
-    public boolean deleteBatchCart(List<Long> cartIdList) {
-        TbCartExample example = new TbCartExample();
-        example.createCriteria().andCartIdIn(cartIdList);
-        cartMapper.deleteByExample(example);
-        return true;
+        List<Cart> carts = cartMapper.selectByExample(cartExample);
+        return carts;
     }
 }
+
+

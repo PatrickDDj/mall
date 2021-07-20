@@ -25,12 +25,19 @@
         <module>order-api</module>
         <module>order-mapper</module>
         <module>order-service</module>
+<<<<<<< HEAD
+        <module>user-mapper</module>
+        <module>user-api</module>
+        <module>user-service</module>
+=======
         <module>search-api</module>
         <module>search-service</module>
-
         <module>goods-api</module>
         <module>goods-mapper</module>
         <module>goods-service</module>
+        <module>cache-api</module>
+        <module>cache-server</module>
+>>>>>>> origin/master
     </modules>
 
     <parent>

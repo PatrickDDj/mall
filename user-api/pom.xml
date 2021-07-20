@@ -2,7 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/master
     <parent>
         <artifactId>mall</artifactId>
         <groupId>com.winemall</groupId>
@@ -11,6 +14,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>user-api</artifactId>
+<<<<<<< HEAD
+    <dependencies>
+=======
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -19,10 +25,19 @@
     <dependencies>
         <!--用户业务接口模块依赖于pojo模块-->
 
+>>>>>>> origin/master
         <dependency>
             <groupId>com.winemall</groupId>
             <artifactId>mall-pojo</artifactId>
             <version>1.0-SNAPSHOT</version>
+<<<<<<< HEAD
+        </dependency>
+        <dependency>
+            <groupId>com.winemall</groupId>
+            <artifactId>user-mapper</artifactId>
+            <version>1.0-SNAPSHOT</version>
+=======
+>>>>>>> origin/master
             <scope>compile</scope>
         </dependency>
     </dependencies>
@@ -31,11 +46,24 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+<<<<<<< HEAD
+                <version>2.3.5.RELEASE</version>
+=======
                 <!--如果是子项目不需要单独运行取消生产可执行jar包-->
+>>>>>>> origin/master
                 <configuration>
                     <skip>true</skip>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+<<<<<<< HEAD
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+=======
+>>>>>>> origin/master
 </project>

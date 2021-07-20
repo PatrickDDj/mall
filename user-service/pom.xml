@@ -10,6 +10,17 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>user-service</artifactId>
+<<<<<<< HEAD
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+=======
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -27,16 +38,23 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <!--添加dubbo springboot启动器-->
+>>>>>>> origin/master
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
         </dependency>
+<<<<<<< HEAD
+=======
         <!--添加dubbo dependencies zookeeper依赖-->
+>>>>>>> origin/master
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-dependencies-zookeeper</artifactId>
             <type>pom</type>
+<<<<<<< HEAD
+=======
             <!--当前依赖和spring boot starter web依赖会引入一个重复的日志依赖,在此排除一个个slf4j-log4j12-->
+>>>>>>> origin/master
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
@@ -44,48 +62,74 @@
                 </exclusion>
             </exclusions>
         </dependency>
+<<<<<<< HEAD
+=======
         <!--用户业务模块依赖用户接口模块-->
+>>>>>>> origin/master
         <dependency>
             <groupId>com.winemall</groupId>
             <artifactId>user-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+<<<<<<< HEAD
+=======
         <!--用户业务模块依赖于pojo模块-->
+>>>>>>> origin/master
         <dependency>
             <groupId>com.winemall</groupId>
             <artifactId>mall-pojo</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+<<<<<<< HEAD
+=======
         <!--添加spring boot热部署-->
+>>>>>>> origin/master
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
+<<<<<<< HEAD
+=======
         <!--添加spring boot日志依赖-->
+>>>>>>> origin/master
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
+<<<<<<< HEAD
+=======
         <!--元数据中心插件-->
+>>>>>>> origin/master
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-metadata-report-zookeeper</artifactId>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
+<<<<<<< HEAD
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+=======
                     <artifactId>log4j</artifactId>
                     <groupId>log4j</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
         <!--添加业务层对mapper层的依赖-->
+>>>>>>> origin/master
         <dependency>
             <groupId>com.winemall</groupId>
             <artifactId>user-mapper</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+<<<<<<< HEAD
+=======
         <!--测试插件-->
+>>>>>>> origin/master
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -96,6 +140,16 @@
                 </exclusion>
             </exclusions>
         </dependency>
+<<<<<<< HEAD
+
+    </dependencies>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+=======
     </dependencies>
     <build>
         <plugins>
@@ -115,4 +169,5 @@
             <!--添加配置跳过测试-->
         </plugins>
     </build>
+>>>>>>> origin/master
 </project>
