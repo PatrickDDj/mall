@@ -22,9 +22,15 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>
         <!--mysql数据库驱动依赖-->
+<!--        <dependency>-->
+<!--            <groupId>mysql</groupId>-->
+<!--            <artifactId>mysql-connector-java</artifactId>-->
+<!--        </dependency>-->
+        <!--达梦数据库驱动依赖-->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>com.dm</groupId>
+            <artifactId>dmdriver</artifactId>
+            <version>18.0</version>
         </dependency>
         <!--数据源依赖: 此处使用spring boot starter jdbc数据源,也可以根据需求更换成其他数据源比如c3p0、durid等-->
         <dependency>
@@ -52,12 +58,18 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-core</artifactId>
+            <version>1.3.2</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.3.5.RELEASE</version>
                 <!--如果是子项目不需要单独运行取消生产可执行jar包-->
                 <configuration>
                     <skip>true</skip>

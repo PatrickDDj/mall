@@ -2,15 +2,15 @@ spring:
   datasource:
     username: root
     password: Aa123456_
-    url: jdbc:mysql://192.168.2.39:3306/mall?useUnicode=true&amp;characterEncoding=utf-8
-    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:dm://192.168.43.228:5236/VSPACE?useUnicode=true&amp;characterEncoding=utf-8
+    driver-class-name: dm.jdbc.driver.DmDriver
 mybatis:
   mapper-locations: classpath:com/winemall/mall/mapper/*.xml
 logging:
   level:
     com:
-      winemall:
-        mall:
+      cestc:
+        vspace:
           mapper: debug
 pagehelper:
   helper-dialect: mysql
