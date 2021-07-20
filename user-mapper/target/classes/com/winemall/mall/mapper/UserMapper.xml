@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.winemall.mall.mapper.UserMapper">
+    <insert id="insertUser">
+        INSERT INTO `mall`.`users` (`PHONE`, `PASSWORD`)
+        VALUES (#{phone}, #{password});
+    </insert>
+    <select id="login" resultMap="BaseMap">
+        SELECT
+            users.PHONE,
+            users.`PASSWORD`
+        FROM
+            users
+        WHERE
+            users.PHONE =#{phone}AND
+            users.`PASSWORD`=#{password};
+    </select>
+    <select id="getUserAll" resultMap="BaseMap">
+        SELECT
+            users.PHONE,
+            users.`PASSWORD`,
+            user_profile.`NAME`,
+            user_profile.BRITHDAY,
+            user_profile.GENDER,
+            user_profile.REG_DATE,
+            user_profile.LAST_LOGIN_DATE,
+            user_profile.HEAD_IMAGE
+        FROM
+            user_profile
+                INNER JOIN users ON user_profile.PHONE = users.PHONE
+        WHERE
+            users.PHONE=#{phone};
+    </select>
+    <resultMap id="BaseMap" type="com.winemall.mall.entity.User">
+        <id property="phone" column="PHONE"/>
+        <result property="password" column="PASSWORD"/>
+        <result property="name" column="NAME"/>
+        <result property="birthday" column="BRITHDAY"/>
+        <result property="gender" column="GENDER"/>
+        <result property="reg_date" column="REG_DATE"/>
+        <result property="last_login_date" column="LAST_LOGIN_DATE"/>
+        <result property="head_image_path" column="HEAD_IMAGE"/>
+    </resultMap>
+    <insert id="insertProfile">
+        INSERT INTO `mall`.`user_profile`
+            (`PHONE`)
+            VALUES
+            (#{phone});
+    </insert>
+    <update id="setProfile" parameterType="com.winemall.mall.entity.User">
+        UPDATE `mall`.`user_profile`
+        SET `NAME`=#{name}, `BRITHDAY`=#{birthday},
+            `GENDER`=#{gender}, `REG_DATE`=NOW(),
+            `HEAD_IMAGE`=#{head_image_path}
+        WHERE (`PHONE`=#{phone});
+    </update>
+</mapper>

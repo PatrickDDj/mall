@@ -8,12 +8,15 @@
         <outputRelativeToContentRoot value="true" />
         <module name="category-mapper" />
         <module name="category-service" />
+        <module name="user-api" />
         <module name="order-mapper" />
         <module name="mall-web" />
         <module name="order-service" />
+        <module name="user-service" />
         <module name="order-api" />
         <module name="mall-pojo" />
         <module name="category-api" />
+        <module name="user-mapper" />
       </profile>
     </annotationProcessing>
   </component>
@@ -28,6 +31,9 @@
       <module name="order-api" options="-parameters" />
       <module name="order-mapper" options="-parameters" />
       <module name="order-service" options="-parameters" />
+      <module name="user-api" options="-parameters" />
+      <module name="user-mapper" options="-parameters" />
+      <module name="user-service" options="-parameters" />
     </option>
   </component>
 </project>

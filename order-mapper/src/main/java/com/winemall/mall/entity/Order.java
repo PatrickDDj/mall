@@ -21,6 +21,7 @@ public class Order {
     int status;
     BigInteger addr_id;
     List<GoodsInOrder> goods;
+    String recv_name;
     Address address;
     public Order() {
     }
@@ -36,6 +37,7 @@ public class Order {
         json.put("order_date",order_date);
         json.put("status",status);
         json.put("phone",phone);
+        json.put("recv_name",recv_name);
         if(detail){
             json.put("addr_info",address.toJson(false));
             json.put("goods_list", JSON.toJSONString(goods));
