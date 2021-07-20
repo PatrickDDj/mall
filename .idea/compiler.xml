@@ -6,31 +6,72 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="category-mapper" />
+        <module name="search-api" />
+        <module name="cache-api" />
+        <module name="cart-service" />
         <module name="category-service" />
+<<<<<<< HEAD
         <module name="user-api" />
         <module name="order-mapper" />
         <module name="mall-web" />
         <module name="order-service" />
+=======
+        <module name="cart-mapper" />
+        <module name="mall-web" />
+>>>>>>> origin/master
         <module name="user-service" />
         <module name="order-api" />
         <module name="mall-pojo" />
+        <module name="user-mapper" />
+        <module name="goods-api" />
+        <module name="category-mapper" />
+        <module name="goods-service" />
+        <module name="cache-server" />
+        <module name="user-api" />
+        <module name="picture-service" />
+        <module name="search-service" />
+        <module name="picture-api" />
+        <module name="order-mapper" />
+        <module name="goods-mapper" />
+        <module name="order-service" />
+        <module name="cart-api" />
         <module name="category-api" />
         <module name="user-mapper" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="receive-addr-mapper" target="1.5" />
+      <module name="recieveaddr-mapper" target="13" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="cache-api" options="-parameters" />
+      <module name="cache-server" options="-parameters" />
+      <module name="cart-api" options="-parameters" />
+      <module name="cart-mapper" options="-parameters" />
+      <module name="cart-service" options="-parameters" />
       <module name="category-api" options="-parameters" />
       <module name="category-mapper" options="-parameters" />
       <module name="category-service" options="-parameters" />
+      <module name="goods-api" options="-parameters" />
+      <module name="goods-mapper" options="-parameters" />
+      <module name="goods-service" options="-parameters" />
       <module name="mall" options="-parameters" />
       <module name="mall-pojo" options="-parameters" />
       <module name="mall-web" options="-parameters" />
       <module name="order-api" options="-parameters" />
       <module name="order-mapper" options="-parameters" />
       <module name="order-service" options="-parameters" />
+<<<<<<< HEAD
+=======
+      <module name="picture-api" options="-parameters" />
+      <module name="picture-service" options="-parameters" />
+      <module name="receive-addr-mapper" options="" />
+      <module name="recieveaddr-mapper" options="-parameters" />
+      <module name="search-api" options="-parameters" />
+      <module name="search-service" options="-parameters" />
+>>>>>>> origin/master
       <module name="user-api" options="-parameters" />
       <module name="user-mapper" options="-parameters" />
       <module name="user-service" options="-parameters" />

@@ -11,6 +11,11 @@
 
     <artifactId>order-mapper</artifactId>
 
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+    <!--添加mapper项目依赖-->
     <dependencies>
         <!--添加一个spring boot web测试-->
         <dependency>
@@ -26,7 +31,6 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.17</version>
         </dependency>
         <!--数据源依赖: 此处使用spring boot starter jdbc数据源,也可以根据需求更换成其他数据源比如c3p0、durid等-->
         <dependency>
@@ -54,12 +58,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.47</version>
-        </dependency>
-
     </dependencies>
     <build>
         <plugins>
@@ -73,10 +71,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
-
 </project>

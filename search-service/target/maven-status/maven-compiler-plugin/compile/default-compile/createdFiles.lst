@@ -1,4 +1,2 @@
-com\cestc\vspace\service\test\SearchServiceTest.class
-com\cestc\vspace\SearchTestStart.class
-com\cestc\vspace\service\impl\SearchServiceImp.class
-com\cestc\vspace\SearchServiceApplication.class
+com\winemall\mall\service\impl\SearchServiceImp.class
+com\winemall\mall\SearchServiceApplication.class

@@ -1,0 +1,3 @@
+com\winemall\mall\UserMapperApplication.class
+com\winemall\mall\mapper\TbBasicMapper.class
+com\winemall\mall\mapper\TbUserMapper.class

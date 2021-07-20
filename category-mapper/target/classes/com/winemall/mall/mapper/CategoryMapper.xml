@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.winemall.mall.mapper.CategoryMapper">
+<mapper namespace="com.winemall.CategoryMapper">
     <select id="findGoodRankBySell" parameterType="java.lang.String"
     resultMap="getGoodRank">
         SELECT

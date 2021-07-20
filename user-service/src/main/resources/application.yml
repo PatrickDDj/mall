@@ -1,11 +1,19 @@
 #配置服务项目的ip地址 端口号
 server:
   address: 192.168.2.11
+<<<<<<< HEAD
   port: 9006  #服务程序本身运行的IP地址和端口号
 #配置dubbo信息
 dubbo:
   application:
     name: category-service-provider
+=======
+  port: 9001
+#配置dubbo信息
+dubbo:
+  application:
+    name: user-service-provider
+>>>>>>> origin/master
   registry:
     #注册中心地址
     #指定超时时间,单位毫秒
@@ -20,12 +28,19 @@ dubbo:
   #协议
   protocol:
     name: dubbo
+<<<<<<< HEAD
     port: 20885  #通过dubbo协议远程调用该服务时候使用的端口号,20880端口已经在user-service模块中被占用,此处更换端口
   #制定扫描的基础包
   scan:
     base-packages: com.cestc.vspace.service.impl
   provider:
     timeout: 50000
+=======
+    port: 20880
+  #制定扫描的基础包
+  scan:
+    base-packages: com.winemall.mall.service.impl
+>>>>>>> origin/master
 #配置springboot热部署
 spring:
   devtools:

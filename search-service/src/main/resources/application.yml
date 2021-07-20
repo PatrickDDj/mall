@@ -23,7 +23,7 @@ dubbo:
     port: 20887
   #制定扫描的基础包
   scan:
-    base-packages: com.cestc.vspace.service.impl
+    base-packages: com.winemall.mall.service.impl
 #配置springboot热部署
 spring:
   devtools:

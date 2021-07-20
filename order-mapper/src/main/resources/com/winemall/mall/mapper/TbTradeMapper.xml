@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.winemall.mall.mapper.TbTradeMapper" >
+  <resultMap id="BaseResultMap" type="com.winemall.mall.pojo.TbTrade" >
+    <id column="OUT_TRADE_NO" property="outTradeNo" jdbcType="BIGINT" />
+    <result column="PHONE" property="phone" jdbcType="CHAR" />
+    <result column="BUYER_ID" property="buyerId" jdbcType="VARCHAR" />
+    <result column="GMT_PAYMENT" property="gmtPayment" jdbcType="TIMESTAMP" />
+    <result column="SELLER_ID" property="sellerId" jdbcType="VARCHAR" />
+    <result column="GOODS_TOTAL_PRICE" property="goodsTotalPrice" jdbcType="DOUBLE" />
+    <result column="FREIGHT" property="freight" jdbcType="DOUBLE" />
+    <result column="TOTAL_AMOUNT" property="totalAmount" jdbcType="DOUBLE" />
+    <result column="TRADE_NO" property="tradeNo" jdbcType="BIGINT" />
+    <result column="TRADE_STATUS" property="tradeStatus" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    OUT_TRADE_NO, PHONE, BUYER_ID, GMT_PAYMENT, SELLER_ID, GOODS_TOTAL_PRICE, FREIGHT, 
+    TOTAL_AMOUNT, TRADE_NO, TRADE_STATUS
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.winemall.mall.pojo.TbTradeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from TB_TRADE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from TB_TRADE
+    where OUT_TRADE_NO = #{outTradeNo,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from TB_TRADE
+    where OUT_TRADE_NO = #{outTradeNo,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.winemall.mall.pojo.TbTradeExample" >
+    delete from TB_TRADE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.winemall.mall.pojo.TbTrade" >
+    insert into TB_TRADE (OUT_TRADE_NO, PHONE, BUYER_ID, 
+      GMT_PAYMENT, SELLER_ID, GOODS_TOTAL_PRICE, 
+      FREIGHT, TOTAL_AMOUNT, TRADE_NO, 
+      TRADE_STATUS)
+    values (#{outTradeNo,jdbcType=BIGINT}, #{phone,jdbcType=CHAR}, #{buyerId,jdbcType=VARCHAR}, 
+      #{gmtPayment,jdbcType=TIMESTAMP}, #{sellerId,jdbcType=VARCHAR}, #{goodsTotalPrice,jdbcType=DOUBLE}, 
+      #{freight,jdbcType=DOUBLE}, #{totalAmount,jdbcType=DOUBLE}, #{tradeNo,jdbcType=BIGINT}, 
+      #{tradeStatus,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.winemall.mall.pojo.TbTrade" >
+    insert into TB_TRADE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="outTradeNo != null" >
+        OUT_TRADE_NO,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="buyerId != null" >
+        BUYER_ID,
+      </if>
+      <if test="gmtPayment != null" >
+        GMT_PAYMENT,
+      </if>
+      <if test="sellerId != null" >
+        SELLER_ID,
+      </if>
+      <if test="goodsTotalPrice != null" >
+        GOODS_TOTAL_PRICE,
+      </if>
+      <if test="freight != null" >
+        FREIGHT,
+      </if>
+      <if test="totalAmount != null" >
+        TOTAL_AMOUNT,
+      </if>
+      <if test="tradeNo != null" >
+        TRADE_NO,
+      </if>
+      <if test="tradeStatus != null" >
+        TRADE_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="outTradeNo != null" >
+        #{outTradeNo,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="buyerId != null" >
+        #{buyerId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtPayment != null" >
+        #{gmtPayment,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTotalPrice != null" >
+        #{goodsTotalPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="freight != null" >
+        #{freight,jdbcType=DOUBLE},
+      </if>
+      <if test="totalAmount != null" >
+        #{totalAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=BIGINT},
+      </if>
+      <if test="tradeStatus != null" >
+        #{tradeStatus,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.winemall.mall.pojo.TbTradeExample" resultType="java.lang.Integer" >
+    select count(*) from TB_TRADE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update TB_TRADE
+    <set >
+      <if test="record.outTradeNo != null" >
+        OUT_TRADE_NO = #{record.outTradeNo,jdbcType=BIGINT},
+      </if>
+      <if test="record.phone != null" >
+        PHONE = #{record.phone,jdbcType=CHAR},
+      </if>
+      <if test="record.buyerId != null" >
+        BUYER_ID = #{record.buyerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtPayment != null" >
+        GMT_PAYMENT = #{record.gmtPayment,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sellerId != null" >
+        SELLER_ID = #{record.sellerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsTotalPrice != null" >
+        GOODS_TOTAL_PRICE = #{record.goodsTotalPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.freight != null" >
+        FREIGHT = #{record.freight,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalAmount != null" >
+        TOTAL_AMOUNT = #{record.totalAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.tradeNo != null" >
+        TRADE_NO = #{record.tradeNo,jdbcType=BIGINT},
+      </if>
+      <if test="record.tradeStatus != null" >
+        TRADE_STATUS = #{record.tradeStatus,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update TB_TRADE
+    set OUT_TRADE_NO = #{record.outTradeNo,jdbcType=BIGINT},
+      PHONE = #{record.phone,jdbcType=CHAR},
+      BUYER_ID = #{record.buyerId,jdbcType=VARCHAR},
+      GMT_PAYMENT = #{record.gmtPayment,jdbcType=TIMESTAMP},
+      SELLER_ID = #{record.sellerId,jdbcType=VARCHAR},
+      GOODS_TOTAL_PRICE = #{record.goodsTotalPrice,jdbcType=DOUBLE},
+      FREIGHT = #{record.freight,jdbcType=DOUBLE},
+      TOTAL_AMOUNT = #{record.totalAmount,jdbcType=DOUBLE},
+      TRADE_NO = #{record.tradeNo,jdbcType=BIGINT},
+      TRADE_STATUS = #{record.tradeStatus,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.winemall.mall.pojo.TbTrade" >
+    update TB_TRADE
+    <set >
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="buyerId != null" >
+        BUYER_ID = #{buyerId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtPayment != null" >
+        GMT_PAYMENT = #{gmtPayment,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sellerId != null" >
+        SELLER_ID = #{sellerId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTotalPrice != null" >
+        GOODS_TOTAL_PRICE = #{goodsTotalPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="freight != null" >
+        FREIGHT = #{freight,jdbcType=DOUBLE},
+      </if>
+      <if test="totalAmount != null" >
+        TOTAL_AMOUNT = #{totalAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="tradeNo != null" >
+        TRADE_NO = #{tradeNo,jdbcType=BIGINT},
+      </if>
+      <if test="tradeStatus != null" >
+        TRADE_STATUS = #{tradeStatus,jdbcType=TINYINT},
+      </if>
+    </set>
+    where OUT_TRADE_NO = #{outTradeNo,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.winemall.mall.pojo.TbTrade" >
+    update TB_TRADE
+    set PHONE = #{phone,jdbcType=CHAR},
+      BUYER_ID = #{buyerId,jdbcType=VARCHAR},
+      GMT_PAYMENT = #{gmtPayment,jdbcType=TIMESTAMP},
+      SELLER_ID = #{sellerId,jdbcType=VARCHAR},
+      GOODS_TOTAL_PRICE = #{goodsTotalPrice,jdbcType=DOUBLE},
+      FREIGHT = #{freight,jdbcType=DOUBLE},
+      TOTAL_AMOUNT = #{totalAmount,jdbcType=DOUBLE},
+      TRADE_NO = #{tradeNo,jdbcType=BIGINT},
+      TRADE_STATUS = #{tradeStatus,jdbcType=TINYINT}
+    where OUT_TRADE_NO = #{outTradeNo,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.winemall.mall.TbGoodsMapper" >
+  <!--自定义sql查询指定类型销量前8的商品信息-->
+  <select id="findTop8GoodsByCategoryId" parameterType="int" resultMap="ResultMapWithBLOBs">
+    select * from TB_GOODS where GOODS_ID in(
+      select * from (
+          select o.GOODS_ID from TB_ORDER o,TB_GOODS g,TB_CATEGORY c
+          where o.GOODS_ID=g.GOODS_ID and g.CATEGORY_ID=c.CATEGORY_ID
+          and c.PARENT_ID=#{id} group by o.GOODS_ID order by sum(o.AMMOUNT)
+          desc limit 0,8
+     ) t
+   )
+  </select>
+  <!--查询全网销量前三的商品-->
+  <select id="findTop3" resultMap="ResultMapWithBLOBs">
+    select * from TB_GOODS where GOODS_ID in(
+      select * from (
+                      select o.GOODS_ID from TB_ORDER o,TB_GOODS g
+                      where o.GOODS_ID=g.GOODS_ID group by o.GOODS_ID order by sum(o.AMMOUNT)
+                        desc limit 0,3
+                    ) t
+    ) order by GOODS_ID
+  </select>
+  <resultMap id="BaseResultMap" type="com.winemall.mall.pojo.TbGoods" >
+    <id column="GOODS_ID" property="goodsId" jdbcType="BIGINT" />
+    <result column="GOODS_TITLE" property="goodsTitle" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="DOUBLE" />
+    <result column="DISCOUNT" property="discount" jdbcType="DOUBLE" />
+    <result column="SPECIFICATION" property="specification" jdbcType="VARCHAR" />
+    <result column="CATEGORY_ID" property="categoryId" jdbcType="INTEGER" />
+    <result column="AMMOUNT" property="ammount" jdbcType="INTEGER" />
+    <result column="UP_DATE" property="upDate" jdbcType="TIMESTAMP" />
+    <result column="DOWN_DATE" property="downDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.winemall.mall.pojo.TbGoodsWithBLOBs" extends="BaseResultMap" >
+    <result column="DESCRIPTION" property="description" jdbcType="LONGVARCHAR" />
+    <result column="IMAGE_URL" property="imageUrl" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    GOODS_ID, GOODS_TITLE, PRICE, DISCOUNT, SPECIFICATION, CATEGORY_ID, AMMOUNT, UP_DATE, 
+    DOWN_DATE, UPDATE_DATE
+  </sql>
+  <sql id="Blob_Column_List" >
+    DESCRIPTION, IMAGE_URL
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.winemall.mall.pojo.TbGoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from TB_GOODS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.winemall.mall.pojo.TbGoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from TB_GOODS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from TB_GOODS
+    where GOODS_ID = #{goodsId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from TB_GOODS
+    where GOODS_ID = #{goodsId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.winemall.mall.pojo.TbGoodsExample" >
+    delete from TB_GOODS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.winemall.mall.pojo.TbGoodsWithBLOBs" >
+    insert into TB_GOODS (GOODS_ID, GOODS_TITLE, PRICE, 
+      DISCOUNT, SPECIFICATION, CATEGORY_ID, 
+      AMMOUNT, UP_DATE, DOWN_DATE, 
+      UPDATE_DATE, DESCRIPTION, IMAGE_URL
+      )
+    values (#{goodsId,jdbcType=BIGINT}, #{goodsTitle,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, 
+      #{discount,jdbcType=DOUBLE}, #{specification,jdbcType=VARCHAR}, #{categoryId,jdbcType=INTEGER}, 
+      #{ammount,jdbcType=INTEGER}, #{upDate,jdbcType=TIMESTAMP}, #{downDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{description,jdbcType=LONGVARCHAR}, #{imageUrl,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.winemall.mall.pojo.TbGoodsWithBLOBs" >
+    insert into TB_GOODS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        GOODS_ID,
+      </if>
+      <if test="goodsTitle != null" >
+        GOODS_TITLE,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="discount != null" >
+        DISCOUNT,
+      </if>
+      <if test="specification != null" >
+        SPECIFICATION,
+      </if>
+      <if test="categoryId != null" >
+        CATEGORY_ID,
+      </if>
+      <if test="ammount != null" >
+        AMMOUNT,
+      </if>
+      <if test="upDate != null" >
+        UP_DATE,
+      </if>
+      <if test="downDate != null" >
+        DOWN_DATE,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="imageUrl != null" >
+        IMAGE_URL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsTitle != null" >
+        #{goodsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=DOUBLE},
+      </if>
+      <if test="specification != null" >
+        #{specification,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="ammount != null" >
+        #{ammount,jdbcType=INTEGER},
+      </if>
+      <if test="upDate != null" >
+        #{upDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downDate != null" >
+        #{downDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="imageUrl != null" >
+        #{imageUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.winemall.mall.pojo.TbGoodsExample" resultType="java.lang.Integer" >
+    select count(*) from TB_GOODS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update TB_GOODS
+    <set >
+      <if test="record.goodsId != null" >
+        GOODS_ID = #{record.goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodsTitle != null" >
+        GOODS_TITLE = #{record.goodsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        PRICE = #{record.price,jdbcType=DOUBLE},
+      </if>
+      <if test="record.discount != null" >
+        DISCOUNT = #{record.discount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.specification != null" >
+        SPECIFICATION = #{record.specification,jdbcType=VARCHAR},
+      </if>
+      <if test="record.categoryId != null" >
+        CATEGORY_ID = #{record.categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.ammount != null" >
+        AMMOUNT = #{record.ammount,jdbcType=INTEGER},
+      </if>
+      <if test="record.upDate != null" >
+        UP_DATE = #{record.upDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.downDate != null" >
+        DOWN_DATE = #{record.downDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateDate != null" >
+        UPDATE_DATE = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.description != null" >
+        DESCRIPTION = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.imageUrl != null" >
+        IMAGE_URL = #{record.imageUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update TB_GOODS
+    set GOODS_ID = #{record.goodsId,jdbcType=BIGINT},
+      GOODS_TITLE = #{record.goodsTitle,jdbcType=VARCHAR},
+      PRICE = #{record.price,jdbcType=DOUBLE},
+      DISCOUNT = #{record.discount,jdbcType=DOUBLE},
+      SPECIFICATION = #{record.specification,jdbcType=VARCHAR},
+      CATEGORY_ID = #{record.categoryId,jdbcType=INTEGER},
+      AMMOUNT = #{record.ammount,jdbcType=INTEGER},
+      UP_DATE = #{record.upDate,jdbcType=TIMESTAMP},
+      DOWN_DATE = #{record.downDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{record.updateDate,jdbcType=TIMESTAMP},
+      DESCRIPTION = #{record.description,jdbcType=LONGVARCHAR},
+      IMAGE_URL = #{record.imageUrl,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update TB_GOODS
+    set GOODS_ID = #{record.goodsId,jdbcType=BIGINT},
+      GOODS_TITLE = #{record.goodsTitle,jdbcType=VARCHAR},
+      PRICE = #{record.price,jdbcType=DOUBLE},
+      DISCOUNT = #{record.discount,jdbcType=DOUBLE},
+      SPECIFICATION = #{record.specification,jdbcType=VARCHAR},
+      CATEGORY_ID = #{record.categoryId,jdbcType=INTEGER},
+      AMMOUNT = #{record.ammount,jdbcType=INTEGER},
+      UP_DATE = #{record.upDate,jdbcType=TIMESTAMP},
+      DOWN_DATE = #{record.downDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{record.updateDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.winemall.mall.pojo.TbGoodsWithBLOBs" >
+    update TB_GOODS
+    <set >
+      <if test="goodsTitle != null" >
+        GOODS_TITLE = #{goodsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="discount != null" >
+        DISCOUNT = #{discount,jdbcType=DOUBLE},
+      </if>
+      <if test="specification != null" >
+        SPECIFICATION = #{specification,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null" >
+        CATEGORY_ID = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="ammount != null" >
+        AMMOUNT = #{ammount,jdbcType=INTEGER},
+      </if>
+      <if test="upDate != null" >
+        UP_DATE = #{upDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downDate != null" >
+        DOWN_DATE = #{downDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="imageUrl != null" >
+        IMAGE_URL = #{imageUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where GOODS_ID = #{goodsId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.winemall.mall.pojo.TbGoodsWithBLOBs" >
+    update TB_GOODS
+    set GOODS_TITLE = #{goodsTitle,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DOUBLE},
+      DISCOUNT = #{discount,jdbcType=DOUBLE},
+      SPECIFICATION = #{specification,jdbcType=VARCHAR},
+      CATEGORY_ID = #{categoryId,jdbcType=INTEGER},
+      AMMOUNT = #{ammount,jdbcType=INTEGER},
+      UP_DATE = #{upDate,jdbcType=TIMESTAMP},
+      DOWN_DATE = #{downDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      DESCRIPTION = #{description,jdbcType=LONGVARCHAR},
+      IMAGE_URL = #{imageUrl,jdbcType=LONGVARCHAR}
+    where GOODS_ID = #{goodsId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.winemall.mall.pojo.TbGoods" >
+    update TB_GOODS
+    set GOODS_TITLE = #{goodsTitle,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DOUBLE},
+      DISCOUNT = #{discount,jdbcType=DOUBLE},
+      SPECIFICATION = #{specification,jdbcType=VARCHAR},
+      CATEGORY_ID = #{categoryId,jdbcType=INTEGER},
+      AMMOUNT = #{ammount,jdbcType=INTEGER},
+      UP_DATE = #{upDate,jdbcType=TIMESTAMP},
+      DOWN_DATE = #{downDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
+    where GOODS_ID = #{goodsId,jdbcType=BIGINT}
+  </update>
+</mapper>

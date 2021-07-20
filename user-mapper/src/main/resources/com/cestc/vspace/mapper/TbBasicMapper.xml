@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.winemall.mall.mapper.TbBasicMapper" >
+  <resultMap id="BaseResultMap" type="com.winemall.mall.pojo.TbBasic" >
+    <id column="PHONE" property="phone" jdbcType="CHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="ID_CARD" property="idCard" jdbcType="CHAR" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="REG_DATE" property="regDate" jdbcType="TIMESTAMP" />
+    <result column="LAST_LOGIN_DATE" property="lastLoginDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.winemall.mall.pojo.TbBasic" extends="BaseResultMap" >
+    <result column="HEAD_IMAGES" property="headImages" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PHONE, NAME, ID_CARD, BIRTHDAY, REG_DATE, LAST_LOGIN_DATE
+  </sql>
+  <sql id="Blob_Column_List" >
+    HEAD_IMAGES
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.winemall.mall.pojo.TbBasicExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from TB_BASIC
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.winemall.mall.pojo.TbBasicExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from TB_BASIC
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from TB_BASIC
+    where PHONE = #{phone,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from TB_BASIC
+    where PHONE = #{phone,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.winemall.mall.pojo.TbBasicExample" >
+    delete from TB_BASIC
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.winemall.mall.pojo.TbBasic" >
+    insert into TB_BASIC (PHONE, NAME, ID_CARD, 
+      BIRTHDAY, REG_DATE, LAST_LOGIN_DATE, 
+      HEAD_IMAGES)
+    values (#{phone,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{idCard,jdbcType=CHAR}, 
+      #{birthday,jdbcType=TIMESTAMP}, #{regDate,jdbcType=TIMESTAMP}, #{lastLoginDate,jdbcType=TIMESTAMP}, 
+      #{headImages,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.winemall.mall.pojo.TbBasic" >
+    insert into TB_BASIC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="idCard != null" >
+        ID_CARD,
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY,
+      </if>
+      <if test="regDate != null" >
+        REG_DATE,
+      </if>
+      <if test="lastLoginDate != null" >
+        LAST_LOGIN_DATE,
+      </if>
+      <if test="headImages != null" >
+        HEAD_IMAGES,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="phone != null" >
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regDate != null" >
+        #{regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginDate != null" >
+        #{lastLoginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="headImages != null" >
+        #{headImages,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.winemall.mall.pojo.TbBasicExample" resultType="java.lang.Integer" >
+    select count(*) from TB_BASIC
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update TB_BASIC
+    <set >
+      <if test="record.phone != null" >
+        PHONE = #{record.phone,jdbcType=CHAR},
+      </if>
+      <if test="record.name != null" >
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idCard != null" >
+        ID_CARD = #{record.idCard,jdbcType=CHAR},
+      </if>
+      <if test="record.birthday != null" >
+        BIRTHDAY = #{record.birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.regDate != null" >
+        REG_DATE = #{record.regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastLoginDate != null" >
+        LAST_LOGIN_DATE = #{record.lastLoginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.headImages != null" >
+        HEAD_IMAGES = #{record.headImages,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update TB_BASIC
+    set PHONE = #{record.phone,jdbcType=CHAR},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      ID_CARD = #{record.idCard,jdbcType=CHAR},
+      BIRTHDAY = #{record.birthday,jdbcType=TIMESTAMP},
+      REG_DATE = #{record.regDate,jdbcType=TIMESTAMP},
+      LAST_LOGIN_DATE = #{record.lastLoginDate,jdbcType=TIMESTAMP},
+      HEAD_IMAGES = #{record.headImages,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update TB_BASIC
+    set PHONE = #{record.phone,jdbcType=CHAR},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      ID_CARD = #{record.idCard,jdbcType=CHAR},
+      BIRTHDAY = #{record.birthday,jdbcType=TIMESTAMP},
+      REG_DATE = #{record.regDate,jdbcType=TIMESTAMP},
+      LAST_LOGIN_DATE = #{record.lastLoginDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.winemall.mall.pojo.TbBasic" >
+    update TB_BASIC
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        ID_CARD = #{idCard,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regDate != null" >
+        REG_DATE = #{regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginDate != null" >
+        LAST_LOGIN_DATE = #{lastLoginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="headImages != null" >
+        HEAD_IMAGES = #{headImages,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where PHONE = #{phone,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.winemall.mall.pojo.TbBasic" >
+    update TB_BASIC
+    set NAME = #{name,jdbcType=VARCHAR},
+      ID_CARD = #{idCard,jdbcType=CHAR},
+      BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      REG_DATE = #{regDate,jdbcType=TIMESTAMP},
+      LAST_LOGIN_DATE = #{lastLoginDate,jdbcType=TIMESTAMP},
+      HEAD_IMAGES = #{headImages,jdbcType=LONGVARCHAR}
+    where PHONE = #{phone,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.winemall.mall.pojo.TbBasic" >
+    update TB_BASIC
+    set NAME = #{name,jdbcType=VARCHAR},
+      ID_CARD = #{idCard,jdbcType=CHAR},
+      BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      REG_DATE = #{regDate,jdbcType=TIMESTAMP},
+      LAST_LOGIN_DATE = #{lastLoginDate,jdbcType=TIMESTAMP}
+    where PHONE = #{phone,jdbcType=CHAR}
+  </update>
+</mapper>

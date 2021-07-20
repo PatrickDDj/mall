@@ -1,6 +1,7 @@
 package com.winemall.mall.controller;
-import com.winemall.mall.service.CategoryService;
 import com.winemall.mall.entity.*;
+import com.winemall.mall.service.CategoryService;
+import org.springframework.data.annotation.Reference;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

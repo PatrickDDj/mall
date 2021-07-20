@@ -1,11 +1,11 @@
 spring:
   datasource:
-    username: root
-    password: Aa123456_
-    url: jdbc:mysql://192.168.2.39:3306/vspace
-    driver-class-name: com.mysql.jdbc.Driver
+    username: SYSDBA
+    password: 123456789
+    url: jdbc:dm://192.168.43.228:5236/VSPACE
+    driver-class-name: dm.jdbc.driver.DmDriver
 mybatis:
-  mapper-locations: classpath:com/cestc/vspace/mapper/*.xml
+  mapper-locations: classpath:com/winemall/mall/mapper/*.xml
 logging:
   level:
     com:

@@ -17,9 +17,10 @@ import java.util.List;
  * @CreateDate: 2021/7/15
  * @Description: This is a part of the training project
  */
-public class CategoryServiceImp implements CategoryService {
+public class CategoryServiceImp implements CategoryService  {
     @Autowired
     private CategoryMapper mapper;
+
     @Override
     public List<GoodsSold> getRankedGoods(int daysAgo) {
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy/MM/dd HH:mm");

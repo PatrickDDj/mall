@@ -10,16 +10,34 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>mall-pojo</module>
+        <module>mall-web</module>
         <module>category-api</module>
         <module>category-mapper</module>
         <module>category-service</module>
-        <module>mall-web</module>
+        <module>picture-api</module>
+        <module>picture-service</module>
+        <module>user-api</module>
+        <module>user-service</module>
+        <module>user-mapper</module>
+        <module>cart-api</module>
+        <module>cart-mapper</module>
+        <module>cart-service</module>
         <module>order-api</module>
         <module>order-mapper</module>
         <module>order-service</module>
+<<<<<<< HEAD
         <module>user-mapper</module>
         <module>user-api</module>
         <module>user-service</module>
+=======
+        <module>search-api</module>
+        <module>search-service</module>
+        <module>goods-api</module>
+        <module>goods-mapper</module>
+        <module>goods-service</module>
+        <module>cache-api</module>
+        <module>cache-server</module>
+>>>>>>> origin/master
     </modules>
 
     <parent>

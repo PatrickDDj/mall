@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    username: root
+    password: Aa123456_
+    url: jdbc:mysql://192.168.2.39:3306/mall
+    driver-class-name: com.mysql.jdbc.Driver
+mybatis:
+  mapper-locations: classpath:com/winemall/mall/mapper/*.xml
+logging:
+  level:
+    com:
+      winemall:
+        mall:
+          mapper: debug
+
