@@ -6,6 +6,7 @@ import com.winemall.mall.service.CartService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -34,9 +35,10 @@ public class CartController {
     }
     // 查询当前用户的所有购物车信息
     @RequestMapping("/findCartsByPhone")
-    public List<Cart> findCartsByPhone(String phone){
+    public String findCartsByPhone(String phone){
         //调用方法查询当前用户的所有购物车信息
-        return cartService.findCartsByPhone(phone);
+        return "Connected";
+//        return cartService.findCartsByPhone(phone);
 //        List<Cart> carts = cartService.findCartsByPhone(phone);
 //        //创建一个集合
 //        List<Result<Cart, TbGoodsWithBLOBs>> results = new ArrayList<>();

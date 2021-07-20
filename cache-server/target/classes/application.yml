@@ -1,14 +1,14 @@
 #配置服务项目的ip地址 端口号
 server:
-  address: localhost
-  port: 9005
+  address: 192.168.43.228
+  port: 9011  #服务程序本身运行的IP地址和端口号
 #配置dubbo信息
 dubbo:
   application:
-    name: picture-service-provider
+    name: cache-service-provider
   registry:
     #注册中心地址
-    #制定超时时间,单位毫秒
+    #指定超时时间,单位毫秒
     timeout: 5000
     #address: zookeeper://192.168.2.55:2181   #单机zookeeper注册中心配置情况
     address: zookeeper://192.168.43.228:2181?backup=192.168.43.228:2182,192.168.43.228:2183 #zookeeper集群
@@ -20,10 +20,12 @@ dubbo:
   #协议
   protocol:
     name: dubbo
-    port: 20884
+    port: 20890  #通过dubbo协议远程调用该服务时候使用的端口号,20880端口已经在user-service模块中被占用,此处更换端口
   #制定扫描的基础包
   scan:
-    base-packages: com.winemall.mall
+    base-packages: com.cestc.vspace.service.impl
+  provider:
+    timeout: 50000
 #配置springboot热部署
 spring:
   devtools:
@@ -34,20 +36,21 @@ spring:
       exclude: WEB-INF/**
   freemarker:
     cache: false  #页面不加载缓存,修改及时生效
+  #配置redis
+  redis:
+    database: 0
+    host: 192.168.43.228
+    port: 6379
+    #配置redis-cluster
+#    cluster:
+#      #设置key的生存时间，当key过期时，它会被自动删除；
+#      expire-seconds: 120
+#      #设置命令的执行时间，如果超过这个时间，则报错;
+#      command-timeout: 5000
+#      #设置redis集群的节点信息，其中namenode为域名解析，通过解析域名来获取相应的地址;
+#      nodes: node131:6379,...,node136:6379
+
 #配置spring boot的日志: 默认使用slf4j(接口) + logback(实现)作为日志框架
 logging:
   config: classpath:logback-spring.xml
-#配置fastdfs相关的参数(主要是tracker追踪器)
-fdfs:
-  #连接超时时间
-  connect-timeout: 6000
-  #缩略图大小
-  thumb-image:
-    width: 100
-    height: 100
-  #socket连接超时时间
-  so-timeout: 6000
-  #tracker集群列表(如果是单机tracker服务器直接配置一个即可)
-  tracker-list:
-    - 192.168.43.228:22122
 

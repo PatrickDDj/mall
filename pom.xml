@@ -27,12 +27,9 @@
         <module>order-service</module>
         <module>search-api</module>
         <module>search-service</module>
-
         <module>goods-api</module>
         <module>goods-mapper</module>
         <module>goods-service</module>
-        <module>recieveaddr-mapper</module>
-        <module>receive-addr-mapper</module>
         <module>cache-api</module>
         <module>cache-server</module>
     </modules>
